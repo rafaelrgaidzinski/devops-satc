@@ -108,3 +108,4 @@ npm run dev
 ## Objetivo
 
 Construir uma interface moderna, responsiva e intuitiva que simplifique a conexão entre restaurantes e profissionais freelancers do setor gastronômico.
+
