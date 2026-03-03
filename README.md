@@ -95,7 +95,7 @@ Cadastro → Publica vaga → Recebe candidaturas → Seleciona freelancer → A
 * Tratamento global de erros
 
 
-## 📦 Como Executar o Projeto
+## Como Executar o Projeto
 
 ```bash
 # Instalar dependências
