@@ -22,3 +22,4 @@ jobs:
 
       - name: build
         run: docker build -t rafaelrgaidzinski/devops-satc:0.0.1 .
+        
