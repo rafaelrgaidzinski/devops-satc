@@ -1,4 +1,4 @@
-# Rafael Ronsoni Gaidzinski — Portfolio
+# Portfolio — Rafael Ronsoni Gaidzinski
 
 Portfólio pessoal construído com React + Vite.
 
