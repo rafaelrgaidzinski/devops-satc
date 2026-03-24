@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800&display=swap');
+
+/* ── Reset & Base ───────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── Design Tokens ──────────────────────────────────── */
+:root {
+  --bg:           #080B10;
+  --surface:      #0E1218;
+  --surface2:     #151B24;
+  --border:       #1E2A38;
+  --neon:         #00FFB2;
+  --neon2:        #FF6B35;
+  --neon3:        #7B61FF;
+  --text:         #E8F0FE;
+  --muted:        #6B7A8D;
+  --font-display: 'Syne', sans-serif;
+  --font-mono:    'Space Mono', monospace;
+
+  --transition:   0.3s ease;
+  --radius:       0px;
+}
+
+/* ── Document ───────────────────────────────────────── */
+html  { scroll-behavior: smooth; }
+body  { background: var(--bg); color: var(--text); font-family: var(--font-mono); overflow-x: hidden; }
+
+/* ── Scrollbar ──────────────────────────────────────── */
+::-webkit-scrollbar       { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--neon); border-radius: 2px; }
+
+/* ── Selection ──────────────────────────────────────── */
+::selection { background: var(--neon); color: var(--bg); }
+
+/* ── Keyframes ──────────────────────────────────────── */
+@keyframes fadeUp  { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes slideIn { from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes pulse   { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+@keyframes float   { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
+@keyframes spin    { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@keyframes mobileMenuIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ── Animation Helpers ──────────────────────────────── */
+.fade-up-1 { animation: fadeUp 0.7s ease 0.10s both; }
+.fade-up-2 { animation: fadeUp 0.7s ease 0.20s both; }
+.fade-up-3 { animation: fadeUp 0.7s ease 0.35s both; }
+.fade-up-4 { animation: fadeUp 0.7s ease 0.50s both; }
+.slide-in  { animation: slideIn 0.4s ease both; }
+
+/* ── Utility ────────────────────────────────────────── */
+.neon-text  { color: var(--neon); text-shadow: 0 0 10px var(--neon), 0 0 30px var(--neon); }
+.container  { max-width: 1100px; margin: 0 auto; padding: 0 32px; }
+
+/* ── Section Labels ─────────────────────────────────── */
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 4px;
+  color: var(--neon);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 5vw, 52px);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 48px;
+}
+
+/* ── Grid Background ────────────────────────────────── */
+.grid-overlay {
+  position: fixed; inset: 0;
+  pointer-events: none; z-index: 0;
+  background-image:
+    linear-gradient(rgba(0,255,178,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,255,178,0.025) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* ── Sections ───────────────────────────────────────── */
+section { padding: 100px 0; }
+
+/* ── Responsive Grids ───────────────────────────────── */
+.project-grid  { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+.contact-grid  { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+.tech-grid     { display: grid; grid-template-columns: repeat(auto-fill, minmax(155px, 1fr)); gap: 14px; }
+.blog-grid     { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 20px; }
+
+@media (max-width: 768px) {
+  .container      { padding: 0 20px; }
+  section         { padding: 72px 0; }
+  .project-grid   { grid-template-columns: 1fr; }
+  .contact-grid   { grid-template-columns: 1fr; }
+  .desktop-nav    { display: none !important; }
+  .burger-btn     { display: flex !important; }
+  .newsletter-row { flex-direction: column !important; }
+}
