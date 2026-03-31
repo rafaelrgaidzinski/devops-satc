@@ -39,7 +39,7 @@ jobs:
 
       # TRIVY
       - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@v0
+        uses: aquasecurity/trivy-action@master
         with:
           image-ref: rafaelrgaidzinski/devops-satc:0.0.1
           format: json
