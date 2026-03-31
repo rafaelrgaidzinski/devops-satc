@@ -37,11 +37,14 @@ jobs:
       - name: Build Docker image
         run: docker build -t rafaelrgaidzinski/devops-satc:0.0.1 .
 
+      - name: Push Docker image
+        run: docker push docker.io/rafaelrgaidzinski/devops-satc:0.0.1
+
       # TRIVY
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
         with:
-          image-ref: rafaelrgaidzinski/devops-satc:0.0.1
+          image-ref: docker.io/rafaelrgaidzinski/devops-satc:0.0.1 
           format: json
           output: trivy-results.json
           severity: MEDIUM,HIGH,CRITICAL
