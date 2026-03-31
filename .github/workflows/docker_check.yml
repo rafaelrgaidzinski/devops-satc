@@ -1,3 +1,4 @@
+
 name: Docker Image Check
 
 on:
@@ -10,16 +11,65 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
+      # SONARCLOUD
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@v2
+        with:
+          args: >
+            -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
+            -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }}
+            -Dsonar.sources=.
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
       - name: Log in to Docker Hub
         uses: docker/login-action@v3
         with:
-          username: ${{secrets.DOCKER_USERNAME}}
-          password: ${{secrets.DOCKER_PASSWORD}}
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: build
+      - name: Build Docker image
         run: docker build -t rafaelrgaidzinski/devops-satc:0.0.1 .
-        
+
+      # TRIVY
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@0.20.0
+        with:
+          image-ref: rafaelrgaidzinski/devops-satc:0.0.1
+          format: json
+          output: trivy-results.json
+          severity: MEDIUM,HIGH,CRITICAL
+
+      # Upload resultado
+      - name: Upload Trivy results
+        uses: actions/upload-artifact@v4
+        with:
+          name: trivy-results
+          path: trivy-results.json
+
+      # instalar jq (necessário)
+      - name: Install jq
+        run: sudo apt-get update && sudo apt-get install -y jq
+
+      # Bloqueio por vulnerabilidade
+      - name: Analyze Trivy results
+        run: |
+          if [ -f trivy-results.json ]; then
+            VULN_COUNT=$(jq '[.Results[].Vulnerabilities[]? | select(.Severity == "MEDIUM")] | length' trivy-results.json)
+
+            echo "Quantidade de vulnerabilidades medias: $VULN_COUNT"
+
+            if [ "$VULN_COUNT" -gt 2 ]; then
+              echo "Pipeline bloqueada: mais de 2 vulnerabilidades medias encontradas."
+              exit 1
+            fi
+          else
+            echo "Arquivo de resultados nao encontrado."
+            exit 1
+          fi
