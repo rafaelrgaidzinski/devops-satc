@@ -5,4 +5,4 @@ COPY . .
 RUN npm install
 RUN npm run build
 EXPOSE 4173 
-CMD ["npm","run","preview"]
+CMD ["NPM","RUN","PREVIEW"]
