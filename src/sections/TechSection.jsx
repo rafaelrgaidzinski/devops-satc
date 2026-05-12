@@ -4,7 +4,7 @@ export default function TechSection() {
   return (
     <section id="tecnologias">
       <div className="container">
-        <div className="section-label">// stack</div>
+        <div className="section-label">{/* stack */}</div>
         <h2 className="section-title">
           Tecnologias que <span className="neon-text">domino</span>
         </h2>
@@ -34,19 +34,21 @@ function TechBadge({ tech }) {
   };
 
   return (
-    <div
-      onMouseEnter={handleEnter}
-      onMouseLeave={handleLeave}
-      style={{
-        padding: "20px 16px",
-        background: "var(--surface)",
-        border: "1px solid var(--border)",
-        display: "flex", flexDirection: "column",
-        alignItems: "center", gap: 10,
-        cursor: "default",
-        transition: "all var(--transition)",
-      }}
-    >
+    <div>
+      <button
+          onMouseEnter={handleEnter}
+          onMouseLeave={handleLeave}
+          style={{
+            padding: "20px 16px",
+            background: "var(--surface)",
+            border: "1px solid var(--border)",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: 10,
+            cursor: "default",
+          }}
+        ></button>
       <span style={{ fontSize: 26 }}>{tech.icon}</span>
 
       <span style={{

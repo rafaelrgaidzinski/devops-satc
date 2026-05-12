@@ -13,7 +13,7 @@ export default function ProjectsSection() {
   return (
     <section id="projetos" style={{ background: "var(--surface)" }}>
       <div className="container">
-        <div className="section-label">// projetos</div>
+        <div className="section-label">{/* projetos */}</div>
         <h2 className="section-title">
           O que eu <span className="neon-text">construí</span>
         </h2>

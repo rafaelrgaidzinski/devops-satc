@@ -33,7 +33,7 @@ export default function ContactSection() {
   return (
     <section id="contato" style={{ background: "var(--surface)" }}>
       <div className="container">
-        <div className="section-label">// contato</div>
+        <div className="section-label">{/* contato */}</div>
         <h2 className="section-title">
           Vamos <span className="neon-text">conversar</span>?
         </h2>

@@ -62,7 +62,7 @@ export default function BlogSection() {
   return (
     <section id="blog">
       <div className="container">
-        <div className="section-label">// blog</div>
+        <div className="section-label">{/* Blog */}</div>
         <h2 className="section-title">
           Últimas <span className="neon-text">publicações</span>
         </h2>
@@ -304,7 +304,7 @@ function Newsletter() {
     >
       <div style={{ flex: 1, minWidth: 200 }}>
         <div style={{ fontFamily: "var(--font-mono)", fontSize: 10, letterSpacing: 3, color: "var(--neon)", marginBottom: 8, textTransform: "uppercase" }}>
-          // Newsletter
+          {/* Newsletter */}
         </div>
         <h3 style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 22, marginBottom: 8 }}>
           Fique por dentro
