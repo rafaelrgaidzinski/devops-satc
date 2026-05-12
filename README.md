@@ -95,4 +95,4 @@ O SRE foca em:
 - Performance
 - Monitoramento
 - Resolução de incidentes
-- Redução de falha
+- Redução de falhas
