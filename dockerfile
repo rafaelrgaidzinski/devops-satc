@@ -5,4 +5,4 @@ COPY . .
 RUN npm ci
 RUN npm run build
 EXPOSE 4173 
-CMD ["NPM","RUN","PREVIEW"]
+CMD ["npm", "run", "preview", "--", "--host", "0.0.0.0", "--port", "4173"]
